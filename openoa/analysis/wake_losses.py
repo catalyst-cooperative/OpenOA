@@ -44,7 +44,6 @@ from openoa.analysis._analysis_validators import (
     validate_reanalysis_selections,
 )
 
-
 logger = logging.getLogger(__name__)
 NDArrayFloat = npt.NDArray[np.float64]
 plot.set_styling()
@@ -503,9 +502,9 @@ class WakeLosses(FromDictMixin, ResetValuesMixin):
             initial_parameters["correct_for_derating"] = correct_for_derating
             self.correct_for_derating = correct_for_derating
         if derating_filter_wind_speed_start is not None:
-            initial_parameters[
-                "derating_filter_wind_speed_start"
-            ] = self.derating_filter_wind_speed_start
+            initial_parameters["derating_filter_wind_speed_start"] = (
+                self.derating_filter_wind_speed_start
+            )
             self.derating_filter_wind_speed_start = derating_filter_wind_speed_start
         if max_power_filter is not None:
             initial_parameters["max_power_filter"] = self.max_power_filter
@@ -523,9 +522,9 @@ class WakeLosses(FromDictMixin, ResetValuesMixin):
             initial_parameters["num_years_LT"] = self.num_years_LT
             self.num_years_LT = num_years_LT
         if assume_no_wakes_high_ws_LT_corr is not None:
-            initial_parameters[
-                "assume_no_wakes_high_ws_LT_corr"
-            ] = self.assume_no_wakes_high_ws_LT_corr
+            initial_parameters["assume_no_wakes_high_ws_LT_corr"] = (
+                self.assume_no_wakes_high_ws_LT_corr
+            )
             self.assume_no_wakes_high_ws_LT_corr = assume_no_wakes_high_ws_LT_corr
         if no_wakes_ws_thresh_LT_corr is not None:
             initial_parameters["no_wakes_ws_thresh_LT_corr"] = self.no_wakes_ws_thresh_LT_corr
@@ -566,15 +565,15 @@ class WakeLosses(FromDictMixin, ResetValuesMixin):
             # Create columns for turbine power and wind speed during normal operation (NaN otherwise)
             for t in self.turbine_ids:
                 valid_inds = ~self.aggregate_df_sample[("derate_flag", t)]
-                self.aggregate_df_sample.loc[
-                    valid_inds, ("power_normal", t)
-                ] = self.aggregate_df_sample.loc[valid_inds, ("WTUR_W", t)]
+                self.aggregate_df_sample.loc[valid_inds, ("power_normal", t)] = (
+                    self.aggregate_df_sample.loc[valid_inds, ("WTUR_W", t)]
+                )
 
             for t in self.turbine_ids:
                 valid_inds = ~self.aggregate_df_sample[("derate_flag", t)]
-                self.aggregate_df_sample.loc[
-                    valid_inds, ("windspeed_normal", t)
-                ] = self.aggregate_df_sample.loc[valid_inds, ("WMET_HorWdSpd", t)]
+                self.aggregate_df_sample.loc[valid_inds, ("windspeed_normal", t)] = (
+                    self.aggregate_df_sample.loc[valid_inds, ("WMET_HorWdSpd", t)]
+                )
 
             # Find freestream turbines for each wind direction. Update the dictionary only when the set of turbines
             # differs from the previous wind direction bin.

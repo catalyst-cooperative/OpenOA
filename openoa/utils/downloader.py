@@ -45,7 +45,6 @@ from tqdm import tqdm
 
 from openoa.logging import logging
 
-
 logger = logging.getLogger()
 
 
