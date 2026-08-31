@@ -33,7 +33,6 @@ from openoa.analysis._analysis_validators import (
     validate_reanalysis_selections,
 )
 
-
 logger = logging.getLogger(__name__)
 plot.set_styling()
 
