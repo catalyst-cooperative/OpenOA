@@ -28,7 +28,6 @@ from openoa.schema.metadata import convert_frequency
 from openoa.utils.machine_learning_setup import MachineLearningSetup
 from openoa.analysis._analysis_validators import validate_reanalysis_selections
 
-
 logger = logging.getLogger(__name__)
 
 NDArrayFloat = npt.NDArray[np.float64]
@@ -433,7 +432,7 @@ class MonteCarloAEP(FromDictMixin, ResetValuesMixin):
 
         # Drop any data that have NaN gross energy values or NaN reanalysis data
         self.aggregate = self.aggregate.dropna(
-            subset=["gross_energy_gwh"] + [product for product in self.reanalysis_products]
+            subset=["gross_energy_gwh"] + [*self.reanalysis_products]
         )
 
     @logged_method_call
@@ -1157,9 +1156,9 @@ class MonteCarloAEP(FromDictMixin, ResetValuesMixin):
             )
 
         # Store result in dictionary
-        self.long_term_sampling[
-            (self._run.reanalysis_product, self._run.num_years_windiness)
-        ] = long_term_reg_inputs
+        self.long_term_sampling[(self._run.reanalysis_product, self._run.num_years_windiness)] = (
+            long_term_reg_inputs
+        )
 
         # Return result
         return long_term_reg_inputs.copy()

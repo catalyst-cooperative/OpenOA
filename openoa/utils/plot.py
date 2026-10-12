@@ -20,7 +20,6 @@ from matplotlib.ticker import StrMethodFormatter
 
 from openoa import PlantData
 
-
 NDArrayFloat = npt.NDArray[np.float64]
 
 
