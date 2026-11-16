@@ -50,7 +50,6 @@ from openoa.schema import FromDictMixin, ResetValuesMixin
 from openoa.logging import logging, logged_method_call
 from openoa.analysis._analysis_validators import validate_UQ_input, validate_half_closed_0_1_right
 
-
 logger = logging.getLogger(__name__)
 NDArrayFloat = npt.NDArray[np.float64]
 plot.set_styling()
