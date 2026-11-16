@@ -30,6 +30,7 @@ steps taken to correct the raw data for use in the PRUF OA code.
 - Wind speed, wind direction, temperature, and density
 
 """
+
 from __future__ import annotations
 
 import re
@@ -44,7 +45,6 @@ import openoa.utils.met_data_processing as met
 from openoa.plant import PlantData
 from openoa.utils import filters, timeseries
 from openoa.logging import logging
-
 
 logger = logging.getLogger()
 

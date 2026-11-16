@@ -23,7 +23,6 @@ from openoa.logging import logging, logged_method_call
 from openoa.utils.plot import set_styling
 from openoa.analysis._analysis_validators import validate_UQ_input, validate_half_closed_0_1_right
 
-
 logger = logging.getLogger(__name__)
 set_styling()
 
@@ -170,9 +169,9 @@ class ElectricalLosses(FromDictMixin, ResetValuesMixin):
             initial_parameters["uncertainty_scada"] = self.uncertainty_scada
             self.uncertainty_scada = uncertainty_scada
         if uncertainty_correction_threshold is not None:
-            initial_parameters[
-                "uncertainty_correction_threshold"
-            ] = self.uncertainty_correction_threshold
+            initial_parameters["uncertainty_correction_threshold"] = (
+                self.uncertainty_correction_threshold
+            )
             self.uncertainty_correction_threshold = uncertainty_correction_threshold
 
         # Setup Monte Carlo approach, and calculate the electrical losses
@@ -401,9 +400,9 @@ def create_ElectricalLosses(
     project: PlantData,
     UQ: bool = __defaults_UQ,
     num_sim: int = __defaults_num_sim,
-    uncertainty_correction_threshold: NDArrayFloat
-    | tuple[float, float]
-    | float = __defaults_uncertainty_correction_threshold,
+    uncertainty_correction_threshold: (
+        NDArrayFloat | tuple[float, float] | float
+    ) = __defaults_uncertainty_correction_threshold,
     uncertainty_meter: NDArrayFloat | tuple[float, float] | float = __defaults_uncertainty_meter,
     uncertainty_scada: NDArrayFloat | tuple[float, float] | float = __defaults_uncertainty_scada,
 ) -> ElectricalLosses:
